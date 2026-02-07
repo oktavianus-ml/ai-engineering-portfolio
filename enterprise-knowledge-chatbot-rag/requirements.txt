@@ -1,0 +1,15 @@
+fastapi
+uvicorn[standard]
+requests
+rapidfuzz
+python-telegram-bot==20.7
+python-dotenv
+langchain
+langchain-openai
+faiss-cpu
+python-dotenv
+streamlit
+sentence-transformers
+torch
+pypdf
+numpy
