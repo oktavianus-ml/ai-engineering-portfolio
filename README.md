@@ -1,224 +1,168 @@
-# 👨‍💻 AI Engineering Portfolio
-**LLM • RAG • Forecasting • Decision Intelligence**
+# Forecasting Decision Assistant (V1)
 
-I am an AI Engineer specializing in **Enterprise-grade LLM systems**, with a focus on **Retrieval-Augmented Generation (RAG)** and **forecasting-driven decision support.
-
-This repository showcases **production-oriented AI systems** with clear architecture, representative core code, and real-world use cases.
-
-⚠️ Note: Code shown is **representative core logic only. Some components are simplified or redacted for confidentiality.
+An AI-powered Inventory Decision Intelligence System that transforms multi-horizon demand forecasts into actionable inventory recommendations with scenario simulation and explainable reasoning.
 
 ---
 
-## 🚀 Featured Projects
+## 🎯 Project Vision
 
+Most forecasting systems stop at predicting future demand.
 
-1️⃣ Enterprise RAG FAQ System – CNI AI Chatbot
-**Category:** Conversational AI · RAG · Knowledge Systems  
-**Role:** AI Engineer / System Designer  
+Forecasting Decision Assistant (V1) goes further by translating predictions into operational decisions such as:
 
-An **enterprise FAQ chatbot** powered by **Retrieval-Augmented Generation (RAG)** to provide **accurate, grounded, and auditable answers** from internal knowledge sources.
+- Reorder or Delay
+- Urgency level classification
+- Stock coverage evaluation
+- Scenario-based robustness analysis
+- Confidence scoring
+- Natural language explanations
 
-### 🔍 Business Problem
-- Enterprise knowledge is distributed across multiple documents
-- Manual support processes are inefficient
-- Risk of hallucination in generic LLM-based chatbots
-
-### 💡 Solution
-Designed and implemented a **RAG-based chatbot system** that:
-- Retrieves relevant internal documents using embeddings
-- Grounds LLM responses on verified knowledge sources
-- Exposes REST APIs for enterprise system integration
-
-
-### 🏗 Architecture Overview
-The system is designed as a **modular Enterprise RAG (Retrieval-Augmented Generation) architecture**, separating concerns between **API layer, core reasoning engine, ingestion pipeline, and data layer**.
-
-User / Channel (Web, Telegram)
-↓
-API Layer (FastAPI)
-↓
-Router & Policies
-↓
-RAG Core Engine
-├─ Retriever (Vector Search)
-├─ Context Builder
-├─ Prompt Builder
-└─ LLM Caller
-↓
-LLM (Local / Ollama)
-↓
-Final Answer + Confidence
-
-
-## 📂 Project Structure (Simplified)
-
-cni-ai-chatbot/
-├── api/ # API & routing layer
-├── core/ # RAG reasoning engine
-├── ingestion/ # Document chunking & embedding
-├── loaders/ # PDF / Web loaders
-├── retriever.py # Semantic retrieval
-├── call_llm.py # LLM abstraction
-├── ollama.py # Local LLM integration
-├── README.md
-├── requirements.txt
-└── Dockerfile
-
-
-
-#### 1️⃣ API & Interface Layer
-Handles all external interactions and request validation.
-
-- `api/main.py` – Application entry point  
-- `api/router.py` – Request routing  
-- `telegram_bot.py` – Telegram integration  
-- `schemas.py` – Request/response schema  
-
-This layer ensures **clean separation between interface and core logic**.
-
-
-#### 2️⃣ Ingestion & Knowledge Processing
-Responsible for converting raw enterprise documents into searchable knowledge.
-
-- `loaders/` – PDF, web, image loaders  
-- `ingestion/chunker.py` – Document chunking  
-- `ingestion/embedder.py` – Embedding generation  
-- `scripts/embed_*.py` – Batch ingestion pipelines  
-
-Outputs are stored in a **vector store** for semantic retrieval.
+This system bridges the gap between predictive modeling and real-world inventory decision-making.
 
 ---
 
-#### 3️⃣ Retrieval & Search Layer
-Fetches relevant knowledge based on semantic similarity.
+## 🧠 Core Capabilities
 
-- `retriever.py` – Vector-based retrieval  
-- `search.py` – Query execution  
-- `vector_store/` – Embedded knowledge storage  
+### 1. Multi-Horizon Forecasting
+- Weekly → Operational control (reorder & stock monitoring)
+- Monthly → Planning & allocation
+- Yearly → Budgeting & strategic direction
 
-This layer ensures **answers are grounded in verified documents**.
-
----
-
-#### 4️⃣ RAG Core Reasoning Engine
-The heart of the system that composes context and controls reasoning.
-
-- `core/engine.py` – Main RAG execution flow  
-- `context_builder.py` – Context assembly  
-- `prompt_builder.py` – Prompt construction  
-- `composer.py` – Multi-source answer composition  
-- `policies.py` – Answer control & guardrails  
-Designed to **minimize hallucination and enforce consistency**.
-
-
-#### 5️⃣ LLM Integration Layer
-Abstracted interface to LLM providers.
-
-- `call_llm.py` – Unified LLM interface  
-- `ollama.py` – Local model execution  
-- `sop_llm.py` – SOP-aware prompting  
-Allows **model swapping without changing core logic**.
-
-
-#### 6️⃣ Learning & Feedback Loop (Optional)
-Enables system improvement over time.
-
-- `learning.py` – Learning logic  
-- `confidence.py` – Answer confidence scoring  
-- `data/json/chat_logs.jsonl` – Interaction logs  
-Supports **continuous improvement and auditability**.
-
-
-#### 7️⃣ Data Layer
-Stores raw, processed, and learned knowledge.
-- `data/raw/` – Source documents  
-- `data/processed/` – Cleaned content  
-- `data/vectorstore/` – Embeddings  
-- `learned_answers.json` – Accepted answers  
+Models are trained using XGBoost and evaluated with:
+- MAE (Mean Absolute Error)
+- Bias (BAE)
+- Zero-demand ratio
+- Trend classification
 
 ---
 
-### ✅ Architectural Highlights
+### 2. Decision Intelligence Engine
 
-- Modular, production-oriented design  
-- Clear separation of concerns  
-- RAG-first approach to reduce hallucination  
-- Scalable ingestion and retrieval pipeline  
-- LLM-agnostic integration  
+The system converts forecasts into structured decisions using:
 
+- Reorder point calculation
+- Safety stock estimation
+- Stock coverage days
+- Urgency classification (Low / Medium / High)
+- Confidence scoring
 
-### 🧠 Key Capabilities
-- Document ingestion & vector embedding
-- Semantic search using vector database
-- Prompt engineering with contextual grounding
-- Modular service-based architecture
-
-### 🛠 Tech Stack
-- **Language:** Python  
-- **Frameworks:** FastAPI  
-- **AI:** LLM, RAG, Embeddings  
-- **Tools:** Docker, Git  
-
-📂 Project Folder: `projects/enterprise-knowledge-chatbot-rag`
-
-
-######################################################################################
-
-
-2️⃣ Forecasting Decision Assistant (LLM + Time Series)
-
-**Category:** Decision Intelligence · Forecasting · AI Assistant  
-**Role:** Machine Learning / AI Engineer  
-
-An **AI-powered decision assistant** that combines **time-series forecasting models** with **LLM-based reasoning** to support operational and strategic decisions.
-
-### 🔍 Business Problem
-- Forecast outputs are difficult for non-technical stakeholders to interpret
-- Decision-makers need explanations, not just numeric predictions
-- Lack of intelligent interface for forecasting insights
-
-### 💡 Solution
-Built a system that:
-- Generates forecasts from historical time-series data
-- Evaluates model performance using standard metrics
-- Uses LLM to translate forecasts into natural-language insights
-
-### 📐 Models & Methods
-- Statistical and ML time-series models (ARIMA, Prophet, etc.)
-- Forecast evaluation (RMSE, MAE)
-- LLM-based explanation and insight generation
-
-### 🛠 Tech Stack
-- **Language:** Python  
-- **ML:** Time Series Forecasting  
-- **AI:** LLM-based reasoning  
-- **Tools:** Jupyter, Scikit-learn  
-
-📂 Project Folder: `projects/..`
+Output example:
+- Action: DELAY
+- Urgency: LOW
+- Confidence: 0.6
 
 ---
 
-## 🛠 Core Skills Demonstrated
+### 3. Scenario & What-If Analysis
 
-- Enterprise LLM System Design  
-- Retrieval-Augmented Generation (RAG)  
-- Time Series Forecasting  
-- API-based AI Services  
-- Clean and scalable project architecture  
-- AI systems with business impact  
+The system evaluates decision robustness under demand volatility:
 
----
+- Worst-case demand simulation
+- Best-case demand simulation
+- Sensitivity analysis
+- Decision stability validation
 
-## 🧭 Why This Portfolio
-
-✔ Built with **real-world enterprise use cases**  
-✔ Focused on **architecture, reasoning, and impact**  
-✔ Clean, readable, and production-minded code  
-✔ Scalable structure for future AI projects  
+This ensures recommendations remain consistent even when demand fluctuates.
 
 ---
 
-## 📬 Contact
+### 4. Explainability Layer
 
-📧 Email: your@email.com  
-💼 LinkedIn: your-linkedin-url  
+Each decision includes natural language reasoning, for example:
+
+Despite demand fluctuations in best and worst-case scenarios, the recommendation remains DELAY. Current stock coverage exceeds safety thresholds, indicating low urgency.
+
+This improves transparency and stakeholder trust.
+
+---
+
+### 5. User Interfaces
+
+- 📱 Telegram Bot (Conversational interface)
+- 📊 Forecast visualizations (Weekly / Monthly / Yearly)
+- Scenario summary reports
+
+The interface allows non-technical users to consume decision intelligence easily.
+
+---
+
+## 🏗 System Architecture
+
+The system follows a modular architecture:
+
+Sales Data  
+→ Forecast Engine  
+→ Scenario Simulation  
+→ Decision Engine  
+→ Explanation Layer  
+→ User Interface  
+
+The architecture separates:
+
+- Domain logic
+- Forecasting models
+- Decision services
+- Infrastructure integrations
+
+This ensures maintainability and extensibility.
+
+---
+
+## 📂 Repository Structure
+
+This repository contains two layers:
+
+### 🧠 Production Code
+Located in:
+- `/app`
+- `/planning`
+- `/scripts`
+- `/streamlit_app`
+- `/telegram_bot`
+
+These folders contain the full engineering implementation.
+
+### 🎯 Portfolio Documentation
+Located in:
+- `/showcase`
+
+If you are reviewing system design and business framing, start there.  
+If you are reviewing implementation quality, explore `/app`.
+
+---
+
+## 🚀 Business Value
+
+- Reduces reactive inventory decisions
+- Improves reorder timing
+- Enhances planning confidence
+- Evaluates decision robustness under uncertainty
+- Bridges forecasting and operational execution
+
+---
+
+## ⚠️ Current Limitations (V1)
+
+- Assumes stable supplier lead times
+- Does not yet integrate real-time ERP inventory feeds
+- Does not model supplier reliability uncertainty
+
+---
+
+## 🔮 Future Improvements
+
+- Lead-time variability modeling
+- Reinforcement learning-based inventory policy optimization
+- ERP Odoo integration
+- Automated threshold calibration
+- Multi-product portfolio optimization
+
+---
+
+## 🏁 Why This Project Matters
+
+Accurate forecasts do not automatically produce good decisions.
+
+Actionable, explainable, and robust decision intelligence does.
+
+Forecasting Decision Assistant (V1) demonstrates how predictive modeling can evolve into a structured decision-support system.

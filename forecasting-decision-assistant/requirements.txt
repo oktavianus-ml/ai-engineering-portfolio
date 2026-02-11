@@ -1,0 +1,31 @@
+fastapi
+uvicorn
+
+pandas
+numpy
+
+xgboost
+scikit-learn
+
+python-dateutil
+
+matplotlib
+plotly
+
+requests
+
+psycopg2-binary
+sqlalchemy
+
+streamlit
+
+python-telegram-bot
+
+python-dotenv
+
+<<<<<<< HEAD
+pandas
+scikit-learn
+=======
+pandas
+>>>>>>> 3b3827b503e7ed8c1f1a845f2eacee8ff66a980f
